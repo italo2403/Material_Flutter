@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Exemplo de LayoutBuilder'),
+        ),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            // Verifica se a largura é maior que 600 (condição arbitrária)
+            bool isWideScreen = constraints.maxWidth > 600;
+
+            return Center(
+              child: Container(
+                color: Colors.blue,
+                width: isWideScreen
+                    ? 300
+                    : 200, // Altera a largura com base na largura da tela
+                height: 200,
+                child: Center(
+                  child: Text(
+                    isWideScreen ? 'Tela Larga' : 'Tela Estreita',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}

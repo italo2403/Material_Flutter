@@ -1,0 +1,86 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Exemplo de uso do MediaQuery'),
+        ),
+        body: Center(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // Verifique o tamanho da tela
+              if (constraints.maxWidth < 600) {
+                // Se a largura for menor que 600, exiba um layout diferente
+                return MobileLayout();
+              } else {
+                // Caso contrário, exiba outro layout
+                return DesktopLayout();
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MobileLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'Layout para dispositivos móveis',
+            style: TextStyle(fontSize: 20),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Botão 1'),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Botão 2'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DesktopLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'Layout para desktop',
+            style: TextStyle(fontSize: 20),
+          ),
+          SizedBox(width: 20),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Botão 1'),
+          ),
+          SizedBox(width: 10),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Botão 2'),
+          ),
+        ],
+      ),
+    );
+  }
+}
